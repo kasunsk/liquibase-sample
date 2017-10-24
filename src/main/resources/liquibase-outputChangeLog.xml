@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="kasun (generated)" id="1508845825394-1">
+        <createTable tableName="EMAIL_DATA">
+            <column autoIncrement="true" name="EMAIL_ID" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="RECEIVER_MAIL" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SUBJECT" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CONTENT" type="VARCHAR(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STATUS" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="CREATED_DATE" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_MODIFIED_DATE" type="TIMESTAMP(19)"/>
+            <column name="VERSION" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="kasun (generated)" id="1508845825394-2">
+        <createTable tableName="USER">
+            <column autoIncrement="true" name="USER_ID" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="NAME" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_ROLE" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="CREATED_DATE" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_MODIFIED_DATE" type="TIMESTAMP(19)"/>
+            <column name="VERSION" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="kasun (generated)" id="1508845825394-3">
+        <createTable tableName="USER_ACCOUNT">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="USER_ID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACCOUNT_NUMBER" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="CREATED_DATE" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_MODIFIED_DATE" type="TIMESTAMP(19)"/>
+            <column name="VERSION" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="kasun (generated)" id="1508845825394-4">
+        <createTable tableName="USER_TICKET">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="USER_ID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ORIGIN" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESTINATION" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRICE" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CURRENCY" type="VARCHAR(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TICKETS_AMOUNT" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="CREATED_DATE" type="TIMESTAMP(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_MODIFIED_DATE" type="TIMESTAMP(19)"/>
+            <column name="VERSION" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="kasun (generated)" id="1508845825394-5">
+        <createIndex indexName="USER_ID" tableName="USER_ACCOUNT">
+            <column name="USER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="kasun (generated)" id="1508845825394-6">
+        <addForeignKeyConstraint baseColumnNames="USER_ID" baseTableName="USER_ACCOUNT" constraintName="USER_ACCOUNT_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="USER_ID" referencedTableName="USER"/>
+    </changeSet>
+</databaseChangeLog>
